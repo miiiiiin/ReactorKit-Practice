@@ -14,8 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let viewController = self.window?.rootViewController as! CounterViewController
-        viewController.reactor = CounterViewReactor()
+//        let viewController = self.window?.rootViewController as! CounterViewController
+        let vc = CounterViewController()
+        vc.reactor = CounterViewReactor()
+        self.window?.rootViewController = vc
+//        let viewController = self.window?.rootViewController as? CounterViewController
+//        viewController?.reactor = CounterViewReactor()
         return true
     }
 }

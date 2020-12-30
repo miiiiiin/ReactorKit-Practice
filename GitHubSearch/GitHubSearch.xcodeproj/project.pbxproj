@@ -10,7 +10,6 @@
 		7D35CFCA259C39FE00962A4A /* GitHubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35CFC9259C39FE00962A4A /* GitHubSearchViewController.swift */; };
 		7D35CFD1259C3A5D00962A4A /* GitHubSearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35CFD0259C3A5D00962A4A /* GitHubSearchViewReactor.swift */; };
 		7DB64232259B2C4D005BA7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB64231259B2C4D005BA7A0 /* AppDelegate.swift */; };
-		7DB64234259B2C4D005BA7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB64233259B2C4D005BA7A0 /* SceneDelegate.swift */; };
 		7DB64236259B2C4D005BA7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB64235259B2C4D005BA7A0 /* ViewController.swift */; };
 		7DB64239259B2C4D005BA7A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB64237259B2C4D005BA7A0 /* Main.storyboard */; };
 		7DB6423B259B2C4D005BA7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DB6423A259B2C4D005BA7A0 /* Assets.xcassets */; };
@@ -24,7 +23,6 @@
 		7D35CFD0259C3A5D00962A4A /* GitHubSearchViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearchViewReactor.swift; sourceTree = "<group>"; };
 		7DB6422E259B2C4D005BA7A0 /* GitHubSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB64231259B2C4D005BA7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7DB64233259B2C4D005BA7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7DB64235259B2C4D005BA7A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7DB64238259B2C4D005BA7A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7DB6423A259B2C4D005BA7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				7DB64231259B2C4D005BA7A0 /* AppDelegate.swift */,
-				7DB64233259B2C4D005BA7A0 /* SceneDelegate.swift */,
 				7DB64235259B2C4D005BA7A0 /* ViewController.swift */,
 				7DB64237259B2C4D005BA7A0 /* Main.storyboard */,
 				7DB6423A259B2C4D005BA7A0 /* Assets.xcassets */,
@@ -215,7 +212,6 @@
 				7DB64232259B2C4D005BA7A0 /* AppDelegate.swift in Sources */,
 				7D35CFCA259C39FE00962A4A /* GitHubSearchViewController.swift in Sources */,
 				7D35CFD1259C3A5D00962A4A /* GitHubSearchViewReactor.swift in Sources */,
-				7DB64234259B2C4D005BA7A0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,14 +32,24 @@ final class GitHubSearchViewReactor: Reactor {
     
     let initialState = State()
     
-    func mutate(action: Action) -> Observable<Mutation> {
-        switch action {
-        case let .updateQuery(query):
-            break
-        case .loadNextPage:
-            break
-        }
-    }
+//    func mutate(action: Action) -> Observable<Mutation> {
+//        print("mustate: \(action)")
+//        switch action {
+//        case let .updateQuery(query):
+//            return Observable.concat([
+//                // 1. set current state's query (.setQuery)
+//                Observable.just(Mutation.setQuery(query)),
+//
+//                // 2. call API and set repos (.setRepos)
+//                self.search(query: query, page: 1)
+//                // cancel
+//
+//            ])
+//            break
+//        case .loadNextPage:
+//            break
+//        }
+//    }
     
     func reduce(state: State, mutation: Mutation) -> State {
         switch mutation {

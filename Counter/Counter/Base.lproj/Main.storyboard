@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i6b-Du-di9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -19,10 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nP0-Vx-Ld6">
-                                <rect key="frame" x="198.5" y="431" width="17" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nP0-Vx-Ld6">
+                                <rect key="frame" x="198.5" y="431" width="24" height="24"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naS-Mn-urt">
@@ -36,27 +36,27 @@
                                 <state key="normal" title="+"/>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZOj-gA-unu">
-                                <rect key="frame" x="197" y="515" width="20" height="20"/>
+                                <rect key="frame" x="197" y="545" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6vw-Kk-9rI"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nP0-Vx-Ld6" firstAttribute="centerX" secondItem="6vw-Kk-9rI" secondAttribute="centerX" constant="3.5" id="1vt-Vc-srs"/>
                             <constraint firstItem="L6g-gf-UYF" firstAttribute="centerY" secondItem="dEv-Uu-n3Z" secondAttribute="centerY" id="4DU-0f-ud8"/>
                             <constraint firstItem="naS-Mn-urt" firstAttribute="leading" secondItem="dEv-Uu-n3Z" secondAttribute="leading" constant="30" id="B5n-pd-LoI"/>
                             <constraint firstAttribute="trailing" secondItem="L6g-gf-UYF" secondAttribute="trailing" constant="30" id="Dgr-j1-66g"/>
                             <constraint firstItem="ZOj-gA-unu" firstAttribute="centerX" secondItem="dEv-Uu-n3Z" secondAttribute="centerX" id="Ilu-YY-xkS"/>
-                            <constraint firstItem="ZOj-gA-unu" firstAttribute="top" secondItem="nP0-Vx-Ld6" secondAttribute="bottom" constant="50" id="Pp5-oT-Cdw"/>
-                            <constraint firstItem="nP0-Vx-Ld6" firstAttribute="centerY" secondItem="dEv-Uu-n3Z" secondAttribute="centerY" id="cLb-P9-h9m"/>
-                            <constraint firstItem="nP0-Vx-Ld6" firstAttribute="centerX" secondItem="dEv-Uu-n3Z" secondAttribute="centerX" id="vZb-sS-RCf"/>
+                            <constraint firstItem="nP0-Vx-Ld6" firstAttribute="centerY" secondItem="6vw-Kk-9rI" secondAttribute="centerY" constant="-10" id="mhn-Ka-PMt"/>
+                            <constraint firstItem="ZOj-gA-unu" firstAttribute="top" secondItem="nP0-Vx-Ld6" secondAttribute="bottom" constant="85" id="rJd-lh-pfh"/>
                             <constraint firstItem="naS-Mn-urt" firstAttribute="centerY" secondItem="dEv-Uu-n3Z" secondAttribute="centerY" id="waR-iM-Bdv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="ZOj-gA-unu" id="LaN-vA-Qef"/>
-                        <outlet property="decreaseButton" destination="naS-Mn-urt" id="BYS-6L-cBl"/>
-                        <outlet property="increaseButton" destination="L6g-gf-UYF" id="IpW-xn-eVk"/>
-                        <outlet property="valueLabel" destination="nP0-Vx-Ld6" id="eQh-x7-xEh"/>
+                        <outlet property="activityIndicatorView" destination="ZOj-gA-unu" id="rjs-K4-TtI"/>
+                        <outlet property="decreaseButton" destination="naS-Mn-urt" id="j7K-xa-NtN"/>
+                        <outlet property="increaseButton" destination="L6g-gf-UYF" id="W6R-u8-Xe7"/>
+                        <outlet property="valueLabel" destination="nP0-Vx-Ld6" id="xJv-OF-Nmd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfQ-qU-8u5" sceneMemberID="firstResponder"/>

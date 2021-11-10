@@ -25,7 +25,6 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: GitHubSearchViewReactor) {
-        print("vc bind reactor: \(reactor)")
     }
     
 }

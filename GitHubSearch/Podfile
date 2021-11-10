@@ -7,7 +7,7 @@ target 'GitHubSearch' do
 
   # Pods for GitHubSearch
   pod 'ReactorKit'
-  pod 'RxSwift', '~> 5.0'
-  pod 'RxCocoa', '~> 5.0'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
 end

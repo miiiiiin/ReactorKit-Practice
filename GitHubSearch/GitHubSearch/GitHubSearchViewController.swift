@@ -19,7 +19,7 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
     
     @IBOutlet weak var table: UITableView!
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

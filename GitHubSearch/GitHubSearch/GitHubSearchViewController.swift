@@ -19,9 +19,12 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
     
     @IBOutlet weak var table: UITableView!
     
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.searchController = searchController
     }
     
     func bind(reactor: GitHubSearchViewReactor) {

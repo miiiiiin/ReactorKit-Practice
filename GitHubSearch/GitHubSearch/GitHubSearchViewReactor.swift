@@ -13,33 +13,53 @@ final class GitHubSearchViewReactor: Reactor {
     
     var initialState = State()
     
-    
     enum Action {
         case updateQuery(String?)
-        
+        case loadNextPage
     }
     
     enum Mutation {
         case setQuery(String?)
         case setRepos([String], nextPage: Int?)
+        case setLoadingNextPage(Bool)
+        case appendRepos([String], nextPage: Int?)
     }
     
     struct State {
         var query: String?
         var repos: [String] = []
         var nextPage: Int?
+        var isLoadingNextPage: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .updateQuery(query):
-            return Observable.concat([
-                Observable.just(Mutation.setQuery(query)),
-                self.search(query: query, page: 1)
-                    .map { result in
-                        return Mutation.setRepos(result.repos, nextPage: result.nextPage)
-                    }
-            ])
+            let setQuery = Observable.just(Mutation.setQuery(query))
+            
+            let search = self.search(query: query, page: 1)
+                .map { result in
+                    return Mutation.setRepos(result.repos, nextPage: result.nextPage)
+                }
+            
+            return .concat([setQuery, search])
+            
+        case .loadNextPage:
+            // prevent from multiple requests
+            guard !self.currentState.isLoadingNextPage else { return .empty() }
+            guard let page = self.currentState.nextPage else { return .empty() }
+            
+            let startLoading = Observable.just(Mutation.setLoadingNextPage(true))
+            let stopLoading = Observable.just(Mutation.setLoadingNextPage(false))
+            
+            // call API and append repos
+            let search = self.search(query: self.currentState.query, page: page)
+                .map {
+                    Mutation.appendRepos($0.repos, nextPage: $0.nextPage)
+                }
+            
+            return .concat([startLoading, search, stopLoading])
+            
         }
     }
     
@@ -53,6 +73,17 @@ final class GitHubSearchViewReactor: Reactor {
         case let .setRepos(repos, nextPage):
             var newState = state
             newState.repos = repos
+            newState.nextPage = nextPage
+            return newState
+            
+        case let .setLoadingNextPage(isLoadingNextPage):
+            var newState = state
+            newState.isLoadingNextPage = isLoadingNextPage
+            return newState
+            
+        case let .appendRepos(repos, nextPage):
+            var newState = state
+            newState.repos.append(contentsOf: repos)
             newState.nextPage = nextPage
             return newState
         }

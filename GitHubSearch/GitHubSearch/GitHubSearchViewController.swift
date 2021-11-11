@@ -16,7 +16,6 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
     
     var disposeBag = DisposeBag()
     
-    
     @IBOutlet weak var table: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -24,6 +23,7 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        table.verticalScrollIndicatorInsets.top = table.contentInset.top
         navigationItem.searchController = searchController
     }
     
@@ -37,7 +37,7 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
         // Action
         
         searchController.searchBar.rx.text
-            .throttle(.milliseconds(100), scheduler: MainScheduler.instance)
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .map { Reactor.Action.updateQuery($0) }
             .bind(to: reactor.action)
 //            .bind { query in
@@ -46,6 +46,16 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
 //            }
             .disposed(by: disposeBag)
         
+        table.rx.contentOffset
+            .filter { [weak self] offset in
+                guard let `self` = self else { return false }
+                print("content offset check: \(offset), \(offset.y + self.table.frame.height), \(self.table.contentSize.height - 100)")
+                guard self.table.frame.height > 0 else { return false }
+                return offset.y + self.table.frame.height >= self.table.contentSize.height - 100
+            }
+            .map { _ in Reactor.Action.loadNextPage }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         // State
         
@@ -53,7 +63,6 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
             .bind(to: table.rx.items(cellIdentifier: "cell")) {
                 indexPath, repoName, cell in
                 cell.textLabel?.text = repoName
-                print("reponame check: \(repoName)")
             }
             .disposed(by: disposeBag)
         

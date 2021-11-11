@@ -15,21 +15,76 @@ final class GitHubSearchViewReactor: Reactor {
     
     
     enum Action {
-        
+        case updateQuery(String?)
         
     }
     
     enum Mutation {
         case setQuery(String?)
+        case setRepos([String], nextPage: Int?)
     }
     
     struct State {
         var query: String?
+        var repos: [String] = []
+        var nextPage: Int?
     }
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case let .updateQuery(query):
+            return Observable.concat([
+                Observable.just(Mutation.setQuery(query)),
+                self.search(query: query, page: 1)
+                    .map { result in
+                        return Mutation.setRepos(result.repos, nextPage: result.nextPage)
+                    }
+            ])
+        }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        switch mutation {
+        case let .setQuery(query):
+            var newState = state
+            newState.query = query
+            return newState
+            
+        case let .setRepos(repos, nextPage):
+            var newState = state
+            newState.repos = repos
+            newState.nextPage = nextPage
+            return newState
+        }
+    }
+    
     
     private func convertToURL(for query: String?, page: Int) -> URL? {
         guard let query = query, !query.isEmpty else { return nil }
         let searchUrl = "\(Constants.baseUrl)q=\(query)&page=\(page)"
         return URL(string: searchUrl)
+    }
+    
+    private func search(query: String?, page: Int) -> Observable<SearchResult> {
+        let emptyResult = SearchResult(repos: [], nextPage: nil)
+        
+        guard let url = self.convertToURL(for: query, page: page) else { return .just(emptyResult) }
+        
+        return URLSession.shared.rx.json(url: url)
+            .map { json -> SearchResult in
+                print("result json: \(json)")
+                guard let dict = json as? [String: Any] else { return emptyResult }
+                guard let items = dict["items"] as? [[String: Any]] else { return emptyResult }
+                
+                let repos = items.compactMap { $0 ["full_name"] as? String }
+                let nextPage = repos.isEmpty ? nil : page + 1
+                
+                print("repos check: \(repos.count), \(SearchResult(repos: repos, nextPage: nextPage))")
+                return SearchResult(repos: repos, nextPage: nextPage)
+            }
+            .do(onError: { error in
+                print("doonerror: \(error)")
+            })
+            .catchAndReturn(emptyResult)
     }
 }

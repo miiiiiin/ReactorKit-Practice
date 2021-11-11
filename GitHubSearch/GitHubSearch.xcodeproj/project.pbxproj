@@ -15,6 +15,7 @@
 		7DB64239259B2C4D005BA7A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB64237259B2C4D005BA7A0 /* Main.storyboard */; };
 		7DB6423B259B2C4D005BA7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DB6423A259B2C4D005BA7A0 /* Assets.xcassets */; };
 		7DB6423E259B2C4D005BA7A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB6423C259B2C4D005BA7A0 /* LaunchScreen.storyboard */; };
+		7DE250F2273CB02300891637 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE250F1273CB02300891637 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		7DB6423A259B2C4D005BA7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DB6423D259B2C4D005BA7A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DB6423F259B2C4D005BA7A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DE250F1273CB02300891637 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		8E63B0FADB68CE6C220983A9 /* Pods_GitHubSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9AA46515DD0055EAC46579 /* Pods-GitHubSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearch.debug.xcconfig"; path = "Target Support Files/Pods-GitHubSearch/Pods-GitHubSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 				7D35CFC9259C39FE00962A4A /* GitHubSearchViewController.swift */,
 				7D35CFD0259C3A5D00962A4A /* GitHubSearchViewReactor.swift */,
 				7D05F811273BCC7A0049EE9D /* Constants.swift */,
+				7DE250F1273CB02300891637 /* SearchResult.swift */,
 			);
 			path = GitHubSearch;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			files = (
 				7DB64232259B2C4D005BA7A0 /* AppDelegate.swift in Sources */,
 				7D35CFCA259C39FE00962A4A /* GitHubSearchViewController.swift in Sources */,
+				7DE250F2273CB02300891637 /* SearchResult.swift in Sources */,
 				7D35CFD1259C3A5D00962A4A /* GitHubSearchViewReactor.swift in Sources */,
 				7D05F812273BCC7A0049EE9D /* Constants.swift in Sources */,
 			);

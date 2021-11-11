@@ -61,7 +61,7 @@ final class GitHubSearchViewReactor: Reactor {
                     Mutation.appendRepos($0.repos, nextPage: $0.nextPage)
                 }
             
-            return .concat([startLoading, search, stopLoading])            
+            return .concat([startLoading, search, stopLoading])
         }
     }
     
@@ -124,8 +124,8 @@ final class GitHubSearchViewReactor: Reactor {
 
 extension GitHubSearchViewReactor.Action {
     static func isUpdateQueryAction(_ action: GitHubSearchViewReactor.Action) -> Bool {
-        print("extension action: \(action)")
         if case .updateQuery = action {
+            print("extension action: \(action)")
             return true
         } else {
             return false

@@ -24,12 +24,16 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
         super.viewDidLoad()
         
         table.verticalScrollIndicatorInsets.top = table.contentInset.top
+        searchController.dimsBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        UIView.setAnimationsEnabled(false)
+        searchController.isActive = true
+        searchController.isActive = false
+        UIView.setAnimationsEnabled(true)
     }
     
     func bind(reactor: GitHubSearchViewReactor) {
@@ -60,6 +64,20 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
                 indexPath, repoName, cell in
                 cell.textLabel?.text = repoName
             }
+            .disposed(by: disposeBag)
+        
+        // Table
+        
+        table.rx.itemSelected
+            .subscribe(onNext: { [weak self, weak reactor] indexPath in
+                guard let `self` = self else { return }
+                self.view.endEditing(true)
+                self.table.deselectRow(at: indexPath, animated: false)
+                guard let repo = reactor?.currentState.repos[indexPath.row] else { return }
+                guard let url = URL(string: "https://github.com/\(repo)") else { return }
+                let viewController = SFSafariViewController(url: url)
+                self.searchController.present(viewController, animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
     }
 }

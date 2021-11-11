@@ -38,6 +38,8 @@ final class GitHubSearchViewReactor: Reactor {
             let setQuery = Observable.just(Mutation.setQuery(query))
             
             let search = self.search(query: query, page: 1)
+                // cancel previous request when the new `.updateQuery` action is fired
+                .take(until: self.action.filter(Action.isUpdateQueryAction))
                 .map { result in
                     return Mutation.setRepos(result.repos, nextPage: result.nextPage)
                 }
@@ -54,12 +56,12 @@ final class GitHubSearchViewReactor: Reactor {
             
             // call API and append repos
             let search = self.search(query: self.currentState.query, page: page)
+                .take(until: self.action.filter(Action.isUpdateQueryAction))
                 .map {
                     Mutation.appendRepos($0.repos, nextPage: $0.nextPage)
                 }
             
-            return .concat([startLoading, search, stopLoading])
-            
+            return .concat([startLoading, search, stopLoading])            
         }
     }
     
@@ -117,5 +119,16 @@ final class GitHubSearchViewReactor: Reactor {
                 print("doonerror: \(error)")
             })
             .catchAndReturn(emptyResult)
+    }
+}
+
+extension GitHubSearchViewReactor.Action {
+    static func isUpdateQueryAction(_ action: GitHubSearchViewReactor.Action) -> Bool {
+        print("extension action: \(action)")
+        if case .updateQuery = action {
+            return true
+        } else {
+            return false
+        }
     }
 }

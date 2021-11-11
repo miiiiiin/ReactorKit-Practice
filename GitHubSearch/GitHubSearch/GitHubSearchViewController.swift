@@ -40,10 +40,6 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .map { Reactor.Action.updateQuery($0) }
             .bind(to: reactor.action)
-//            .bind { query in
-//                print("vc query: \(query)")
-//                reactor.action.on(Event.next(query))
-//            }
             .disposed(by: disposeBag)
         
         table.rx.contentOffset
@@ -65,6 +61,5 @@ class GitHubSearchViewController: UIViewController, StoryboardView {
                 cell.textLabel?.text = repoName
             }
             .disposed(by: disposeBag)
-        
     }
 }
